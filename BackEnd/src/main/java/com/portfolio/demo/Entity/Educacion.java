@@ -8,9 +8,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 
 public class Educacion {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -18,7 +20,7 @@ public class Educacion {
     private String descripcionEd;
 
     public Educacion() {
- 
+
     }
 
     public Educacion(String nombreEd, String descripcionEd) {

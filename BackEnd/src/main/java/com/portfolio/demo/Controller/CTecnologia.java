@@ -1,4 +1,3 @@
-
 package com.portfolio.demo.Controller;
 
 import com.portfolio.demo.Dto.dtoTecnologia;
@@ -25,22 +24,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/tecnologia")
 @CrossOrigin(origins = "https://portfoliobelen-4efcd.web.app")
 public class CTecnologia {
+
     @Autowired
     STecnologia sTecnologia;
-    
+
     @GetMapping("/lista")
-    public ResponseEntity<List<Tecnologia>> list(){
+    public ResponseEntity<List<Tecnologia>> list() {
         List<Tecnologia> list = sTecnologia.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
-   
+
     @GetMapping("/detail/{id}")
-    public ResponseEntity<Tecnologia> getById(@PathVariable("id") int id){
-        if(!sTecnologia.existsById(id))
+    public ResponseEntity<Tecnologia> getById(@PathVariable("id") int id) {
+        if (!sTecnologia.existsById(id)) {
             return new ResponseEntity(new Mensaje("No existe"), HttpStatus.BAD_REQUEST);
+        }
         Tecnologia tecnologia = sTecnologia.getOne(id).get();
         return new ResponseEntity(tecnologia, HttpStatus.OK);
     }
+
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
@@ -50,36 +52,44 @@ public class CTecnologia {
         sTecnologia.delete(id);
         return new ResponseEntity(new Mensaje("Tecnologia eliminada"), HttpStatus.OK);
     }
-@PreAuthorize("hasRole('ADMIN')")
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody dtoTecnologia dtotec){      
-        if(StringUtils.isBlank(dtotec.getNombreT()))
+    public ResponseEntity<?> create(@RequestBody dtoTecnologia dtotec) {
+        if (StringUtils.isBlank(dtotec.getNombreT())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-        if(sTecnologia.existsByNombreT(dtotec.getNombreT()))
+        }
+        if (sTecnologia.existsByNombreT(dtotec.getNombreT())) {
             return new ResponseEntity(new Mensaje("Esa tecnologia ya existe"), HttpStatus.BAD_REQUEST);
-        
+        }
+
         Tecnologia tecnologia = new Tecnologia(dtotec.getNombreT(), dtotec.getDescripcionT(), dtotec.getPorcentajeT());
         sTecnologia.save(tecnologia);
-        
+
         return new ResponseEntity(new Mensaje("Tecnologia agregada"), HttpStatus.OK);
     }
+
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoTecnologia dtotec){
+    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoTecnologia dtotec) {
         //Validamos si existe el ID
-        if(!sTecnologia.existsById(id))
+        if (!sTecnologia.existsById(id)) {
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
-        //Compara nombre de experiencias
-        if(sTecnologia.existsByNombreT(dtotec.getNombreT()) && sTecnologia.getByNombreT(dtotec.getNombreT()).get().getId() != id)
+        }
+        //Compara nombre de tecnologias
+        if (sTecnologia.existsByNombreT(dtotec.getNombreT()) && sTecnologia.getByNombreT(dtotec.getNombreT()).get().getId() != id) {
             return new ResponseEntity(new Mensaje("Esa tecnologia ya existe"), HttpStatus.BAD_REQUEST);
+        }
         //No puede estar vacio
-        if(StringUtils.isBlank(dtotec.getNombreT()))
+        if (StringUtils.isBlank(dtotec.getNombreT())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-        
+        }
+
         Tecnologia tecnologia = sTecnologia.getOne(id).get();
         tecnologia.setNombreT(dtotec.getNombreT());
         tecnologia.setDescripcionT((dtotec.getDescripcionT()));
-        
+        tecnologia.setPorcentajeT(dtotec.getPorcentajeT());
+
         sTecnologia.save(tecnologia);
         return new ResponseEntity(new Mensaje("Tecnologia actualizada"), HttpStatus.OK);
     }
