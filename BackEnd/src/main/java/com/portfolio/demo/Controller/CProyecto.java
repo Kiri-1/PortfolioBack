@@ -50,17 +50,19 @@ public class CProyecto {
         sProyecto.delete(id);
         return new ResponseEntity(new Mensaje("Proyecto eliminado"), HttpStatus.OK);
     }
-@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody dtoProyecto dtopro){      
-        if(StringUtils.isBlank(dtopro.getNombreP()))
+    public ResponseEntity<?> create(@RequestBody dtoProyecto dtopro) {
+        if (StringUtils.isBlank(dtopro.getNombreP())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-        if(sProyecto.existsByNombreP(dtopro.getNombreP()))
+        }
+        if (sProyecto.existsByNombreP(dtopro.getNombreP())) {
             return new ResponseEntity(new Mensaje("Ese proyecto ya existe"), HttpStatus.BAD_REQUEST);
-        
+        }
+
         Proyecto proyecto = new Proyecto(dtopro.getNombreP(), dtopro.getDescripcionP());
         sProyecto.save(proyecto);
-        
+
         return new ResponseEntity(new Mensaje("Proyecto agregada"), HttpStatus.OK);
     }
     @PreAuthorize("hasRole('ADMIN')")
