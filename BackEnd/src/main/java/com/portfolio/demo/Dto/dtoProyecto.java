@@ -8,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Getter @Setter
 public class dtoProyecto {
     
@@ -15,14 +16,17 @@ public class dtoProyecto {
     private String nombreP;
     @NotBlank
     private String descripcionP;
+    @NotBlank
+    private String imagenP;
+    
  //Constructores
     public dtoProyecto() {
     }
 
-    public dtoProyecto(String nombreP, String descripcionP) {
+    public dtoProyecto(String nombreP, String descripcionP, String imagenP) {
         this.nombreP = nombreP;
         this.descripcionP = descripcionP;
+        this.imagenP = imagenP;
     }
-    
-    
+
 }

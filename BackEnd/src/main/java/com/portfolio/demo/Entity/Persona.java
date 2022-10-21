@@ -9,12 +9,14 @@ import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+
+
 @Getter @Setter
 @Entity
 public class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     
     @NotNull
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
@@ -23,9 +25,14 @@ public class Persona {
     @NotNull
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
     private String apellido;
-     
+    
+    @NotNull
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
-    private String img;
+    private String descripcion; 
+    
+    @NotNull
+    @Size(min=1,max=6000, message = "No cumple con la longitud")
+    private String imagen;
 
 }
 

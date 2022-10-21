@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Entity
 @Getter @Setter
 public class Proyecto {
@@ -19,14 +20,16 @@ public class Proyecto {
     private int id;
     private String nombreP;
     private String descripcionP;
+    private String imagenP;
 
     public Proyecto() {
         
     }
 
-    public Proyecto(String nombreP, String descripcionP) {
+    public Proyecto(String nombreP, String descripcionP, String imagenP) {
         this.nombreP = nombreP;
         this.descripcionP = descripcionP;
+        this.imagenP = imagenP;
     }
     
 }
