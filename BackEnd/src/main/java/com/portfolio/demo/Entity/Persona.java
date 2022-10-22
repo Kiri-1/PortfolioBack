@@ -10,7 +10,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 
-
 @Getter @Setter
 @Entity
 public class Persona {
@@ -31,7 +30,7 @@ public class Persona {
     private String descripcion; 
     
     @NotNull
-    @Size(min=1,max=6000, message = "No cumple con la longitud")
+    @Size(min=1,max=60000, message = "No cumple con la longitud")
     private String imagen;
 
 }

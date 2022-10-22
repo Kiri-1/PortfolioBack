@@ -1,16 +1,13 @@
 
 package com.portfolio.demo.Dto;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
 
 @Getter @Setter
-@Entity
-public class dtoPersona implements Serializable {
+public class dtoPersona {
    
     @NotBlank
     private String nombre;
