@@ -33,5 +33,9 @@ public class Persona {
     @Size(min=1,max=60000, message = "No cumple con la longitud")
     private String imagen;
 
+    public Persona(String nombre, String apellido, String descripcion, String imagen) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
 
