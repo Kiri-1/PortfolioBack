@@ -29,7 +29,7 @@ public class Persona {
     @Size(min = 1, max = 50, message = "No cumple con la longitud")
     private String descripcion; 
     
-    @NotNull
+    
     private String imagen;
 
     public Persona(String nombre, String apellido, String descripcion, String imagen) {

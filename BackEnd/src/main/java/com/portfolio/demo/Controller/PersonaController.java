@@ -23,19 +23,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/personas")
 public class PersonaController {
 
     @Autowired
     ImpPersonaService sPersona;
 
-    @GetMapping("/lista")
+    @GetMapping("/personas/lista")
     public ResponseEntity<List<Persona>> list() {
         List<Persona> list = sPersona.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
 
-    @GetMapping("/detail/{id}")
+    @GetMapping("/personas/detail/{id}")
     public ResponseEntity<Persona> getById(@PathVariable("id") int id) {
         if (!sPersona.existsById(id)) {
             return new ResponseEntity(new Mensaje("No existe"), HttpStatus.BAD_REQUEST);
@@ -46,7 +45,7 @@ public class PersonaController {
     
 
    // @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/personas/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!sPersona.existsById(id)) {
             return new ResponseEntity(new Mensaje("No existe ese ID"), HttpStatus.NOT_FOUND);
@@ -56,7 +55,7 @@ public class PersonaController {
     }
 
    // @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/create")
+    @PostMapping("/personas/create")
     public ResponseEntity<?> create(@RequestBody dtoPersona dtopersona) {
         if (StringUtils.isBlank(dtopersona.getNombre())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -74,7 +73,7 @@ public class PersonaController {
  
 
   //  @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/update/{id}")
+    @PutMapping("/personas/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoPersona dtopersona) {
         //Validamos si existe el ID
         if (!sPersona.existsById(id)) {
