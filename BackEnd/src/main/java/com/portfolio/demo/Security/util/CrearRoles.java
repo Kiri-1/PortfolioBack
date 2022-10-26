@@ -1,6 +1,5 @@
-/*
-*
-package com.portfolio.demo.Security.util;
+
+/*package com.portfolio.demo.Security.util;
 
 import com.portfolio.demo.Security.Entity.Rol;
 import com.portfolio.demo.Security.Enums.RolNombre;
@@ -21,4 +20,5 @@ public class CrearRoles implements CommandLineRunner {
        rolService.save(rolAdmin);
        rolService.save(rolUser);
    }
-}*/
+}
+*/
