@@ -9,9 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
 
- */
 
 @Service
 @Transactional /* si una operacion falla hace un rolback y que no impacte en la base de datos, que siga como estaba antes */
