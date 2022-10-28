@@ -7,8 +7,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
 @Service
 @Transactional
 public class ImpPersonaService{
@@ -33,7 +31,6 @@ public class ImpPersonaService{
         ipersonaRepository.save(pers);
     }
     
-
     public void delete(int id) {
      ipersonaRepository.deleteById(id);
     }
@@ -45,6 +42,7 @@ public class ImpPersonaService{
        Persona persona= ipersonaRepository.findById(id).orElse(null);
        return persona;
     }
+    
   /*  
     public boolean existsById(int id){
         return ipersonaRepository.existsById(id);

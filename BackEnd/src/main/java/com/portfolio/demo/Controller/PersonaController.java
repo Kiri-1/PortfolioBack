@@ -13,6 +13,45 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+@CrossOrigin(origins = "*")
+public class PersonaController {
+
+    @Autowired
+    ImpPersonaService sPersona;
+    
+    @GetMapping("/personas/lista")
+    public List<Persona>getPersona(){
+     return sPersona.getPersona();   
+    }
+    
+    @GetMapping(path = {"/personas/{id}"})
+    public Persona findPersona(@PathVariable("id")int id){
+        return sPersona.findPersona(id);
+    }
+    
+     @PostMapping("/personas/create")
+    public void createPersona(@RequestBody Persona persona){
+        sPersona.save(persona);
+    }
+    
+    @DeleteMapping("/personas/borrar/{id}")
+    public void deletePersona (@PathVariable Integer id){
+        sPersona.delete(id);
+        
+    }
+    
+    @PutMapping("/personas/editar/{id}")
+    public Persona editPersona(@PathVariable("id") Integer id,
+                              @RequestBody Persona persona)
+    {
+        persona.setId(id);
+    
+    sPersona.save(persona);
+    return persona;
+    }
+}
+    
 /*import com.portfolio.demo.Dto.dtoPersona;
 import com.portfolio.demo.Entity.Persona;
 import com.portfolio.demo.Security.Controller.Mensaje;
@@ -32,46 +71,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;*/
-
-@RestController
-@CrossOrigin(origins = "*")
-public class PersonaController {
-
-    @Autowired
-    ImpPersonaService sPersona;
-    
-    @GetMapping("/personas/lista")
-    public List<Persona>getPersona(){
-     return sPersona.getPersona();   
-    }
-    
-     @GetMapping(path = {"/personas/{id}"})
-    public Persona findPersona(@PathVariable("id")int id){
-        return sPersona.findPersona(id);
-    }
-    
-    
-     @PostMapping("/personas/create")
-    public void createPersona(@RequestBody Persona persona){
-        sPersona.save(persona);
-    }
-    
-    @DeleteMapping("/personas/borrar/{id}")
-    public void deletePersona (@PathVariable Integer id){
-        sPersona.delete(id);
-        
-    }
-     @PutMapping("/personas/editar/{id}")
-    public Persona editPersona(@PathVariable("id") Integer id,
-                              @RequestBody Persona persona)
-    {
-        
-        persona.setId(id);
-    
-    sPersona.save(persona);
-    return persona;
-    }
-    
    
 /*
     @GetMapping("/personas/lista")
@@ -144,4 +143,4 @@ public class PersonaController {
         sPersona.save(persona);
         return new ResponseEntity(new Mensaje("Persona actualizada"), HttpStatus.OK);
     }*/
-}
+
