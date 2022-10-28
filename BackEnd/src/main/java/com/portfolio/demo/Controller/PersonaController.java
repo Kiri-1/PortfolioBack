@@ -1,6 +1,19 @@
 package com.portfolio.demo.Controller;
 
-import com.portfolio.demo.Dto.dtoPersona;
+import com.portfolio.demo.Entity.Persona;
+import com.portfolio.demo.Service.ImpPersonaService;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+/*import com.portfolio.demo.Dto.dtoPersona;
 import com.portfolio.demo.Entity.Persona;
 import com.portfolio.demo.Security.Controller.Mensaje;
 import com.portfolio.demo.Service.ImpPersonaService;
@@ -18,8 +31,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.RestController;*/
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -27,7 +39,39 @@ public class PersonaController {
 
     @Autowired
     ImpPersonaService sPersona;
-
+    
+    @GetMapping("/personas/lista")
+    public List<Persona>getPersona(){
+     return sPersona.getPersona();   
+    }
+    
+     @PostMapping("/personas/create")
+    public void createPersona(@RequestBody Persona persona){
+        sPersona.save(persona);
+    }
+    
+    @DeleteMapping("/personas/borrar/{id}")
+    public void deletePersona (@PathVariable Integer id){
+        sPersona.delete(id);
+        
+    }
+     @PutMapping("/personas/editar/{id}")
+    public Persona editPersona(@PathVariable("id") Integer id,
+                              @RequestBody Persona persona)
+    {
+        
+        persona.setId(id);
+    
+    sPersona.save(persona);
+    return persona;
+    }
+    
+    @GetMapping(path = {"/personas/{id}"})
+    public Persona findPersona(@PathVariable("id")int id){
+        return sPersona.findPersona(id);
+    }
+    
+/*
     @GetMapping("/personas/lista")
     public ResponseEntity<List<Persona>> list() {
         List<Persona> list = sPersona.list();
@@ -97,5 +141,5 @@ public class PersonaController {
 
         sPersona.save(persona);
         return new ResponseEntity(new Mensaje("Persona actualizada"), HttpStatus.OK);
-    }
+    }*/
 }
