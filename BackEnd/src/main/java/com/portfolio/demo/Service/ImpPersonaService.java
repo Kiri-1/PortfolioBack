@@ -25,7 +25,6 @@ public class ImpPersonaService{
         List<Persona> persona = ipersonaRepository.findAll();
         return persona;
     }
-    
    /* public Optional<Persona> getByNombre(String nombre){
         return ipersonaRepository.findByNombre(nombre);
     }*/
