@@ -26,7 +26,7 @@ public class Persona {
     private String apellido;
     
     @NotNull
-    @Size(min = 1, max = 50, message = "No cumple con la longitud")
+    @Size(min = 1, max = 500, message = "No cumple con la longitud")
     private String descripcion; 
     
     
@@ -35,12 +35,16 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(String nombre, String apellido, String descripcion, String imagen) {
+    public Persona(int id, String nombre, String apellido, String descripcion, String imagen) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.descripcion = descripcion;
         this.imagen = imagen;
     }
+    
+    
+
 
 
 }
