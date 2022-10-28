@@ -32,9 +32,16 @@ public class Persona {
     
     private String imagen;
 
-    public Persona(String nombre, String apellido, String descripcion, String imagen) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Persona() {
     }
+
+    public Persona(String nombre, String apellido, String descripcion, String imagen) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.descripcion = descripcion;
+        this.imagen = imagen;
+    }
+
 
 }
 
