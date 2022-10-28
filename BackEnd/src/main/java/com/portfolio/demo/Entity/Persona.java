@@ -26,7 +26,7 @@ public class Persona {
     private String apellido;
     
     @NotNull
-    @Size(min = 1, max = 500, message = "No cumple con la longitud")
+    @Size(min = 1, max = 5000, message = "No cumple con la longitud")
     private String descripcion; 
     
     
