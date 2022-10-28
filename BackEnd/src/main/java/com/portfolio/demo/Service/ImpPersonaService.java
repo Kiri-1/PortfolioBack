@@ -33,7 +33,11 @@ public class ImpPersonaService{
         ipersonaRepository.save(pers);
     }
     
-    public void delete(int id){
+
+    public void delete(int id) {
+     ipersonaRepository.deleteById(id);
+    }
+    public void Persona(int id){
        ipersonaRepository.deleteById(id);
     }
     

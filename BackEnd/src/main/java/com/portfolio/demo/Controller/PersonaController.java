@@ -45,6 +45,12 @@ public class PersonaController {
      return sPersona.getPersona();   
     }
     
+     @GetMapping(path = {"/personas/{id}"})
+    public Persona findPersona(@PathVariable("id")int id){
+        return sPersona.findPersona(id);
+    }
+    
+    
      @PostMapping("/personas/create")
     public void createPersona(@RequestBody Persona persona){
         sPersona.save(persona);
@@ -66,11 +72,7 @@ public class PersonaController {
     return persona;
     }
     
-    @GetMapping(path = {"/personas/{id}"})
-    public Persona findPersona(@PathVariable("id")int id){
-        return sPersona.findPersona(id);
-    }
-    
+   
 /*
     @GetMapping("/personas/lista")
     public ResponseEntity<List<Persona>> list() {
