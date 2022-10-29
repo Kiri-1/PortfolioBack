@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/educacion")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://belen-jesus-portfolio.herokuapp.com")
 public class CEducacion {
 
     @Autowired
